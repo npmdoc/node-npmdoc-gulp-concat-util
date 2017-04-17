@@ -1,0 +1,566 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/mgcrea/gulp-concat-util"
+
+    >gulp-concat-util (v0.5.5)</a>
+</h1>
+<h4>Gulp task to concat, prepend, append or transform files</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-concat-util">module gulp-concat-util</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-concat-util.gulp-concat-util">
+            function <span class="apidocSignatureSpan"></span>gulp-concat-util
+            <span class="apidocSignatureSpan">(name, config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-concat-util.footer">
+            function <span class="apidocSignatureSpan">gulp-concat-util.</span>footer
+            <span class="apidocSignatureSpan">(footer, locals)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-concat-util.header">
+            function <span class="apidocSignatureSpan">gulp-concat-util.</span>header
+            <span class="apidocSignatureSpan">(header, locals)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-concat-util.scripts">
+            function <span class="apidocSignatureSpan">gulp-concat-util.</span>scripts
+            <span class="apidocSignatureSpan">(name, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-concat-util.toString">
+            function <span class="apidocSignatureSpan">gulp-concat-util.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-concat-util.footer">module gulp-concat-util.footer</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-concat-util.footer.footer">
+            function <span class="apidocSignatureSpan">gulp-concat-util.</span>footer
+            <span class="apidocSignatureSpan">(footer, locals)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-concat-util.header">module gulp-concat-util.header</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-concat-util.header.header">
+            function <span class="apidocSignatureSpan">gulp-concat-util.</span>header
+            <span class="apidocSignatureSpan">(header, locals)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-concat-util.scripts">module gulp-concat-util.scripts</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-concat-util.scripts.scripts">
+            function <span class="apidocSignatureSpan">gulp-concat-util.</span>scripts
+            <span class="apidocSignatureSpan">(name, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-concat-util.toString">module gulp-concat-util.toString</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-concat-util.toString.toString">
+            function <span class="apidocSignatureSpan">gulp-concat-util.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-concat-util" id="apidoc.module.gulp-concat-util">module gulp-concat-util</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-concat-util.gulp-concat-util" id="apidoc.element.gulp-concat-util.gulp-concat-util">
+        function <span class="apidocSignatureSpan"></span>gulp-concat-util
+        <span class="apidocSignatureSpan">(name, config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">gulp-concat-util = function (name, config) {
+
+  var options = extend({}, defaults, config || {});
+  var concat, firstFile, fileName;
+
+  function parsePath(p) {
+    var extname = path.extname(p);
+    return {
+      dirname: path.dirname(p),
+      basename: path.basename(p, extname),
+      extname: extname,
+      sep: path.sep
+    };
+  }
+
+  function combineFn(file, encoding, next) {
+
+    // Ignore empty files
+    if (file.isNull()) {
+      next();
+      return;
+    }
+
+    // Streams not supported
+    if (file.isStream()) {
+<span class="apidocCodeCommentSpan">      /* jshint validthis:true */
+</span>      this.emit(&#x27;error&#x27;, new PluginError(&#x27;gulp-concat-util&#x27;,  &#x27;Streaming not supported&#x27;));
+      next();
+      return;
+    }
+
+    // Forward support for newLine option from gulp-concat
+    if(typeof options.newLine !== &#x27;undefined&#x27;) {
+      options.sep = options.newLine;
+    }
+
+    if (!firstFile) {
+      firstFile = file;
+      if (!name || typeof name === &#x27;string&#x27;) {
+        // Default path to first file basename
+        fileName = name || path.basename(file.path);
+      } else if (typeof name.path === &#x27;string&#x27;) {
+        // Support path as a function
+        fileName = path.basename(name.path);
+      } else if(typeof name === &#x27;function&#x27;) {
+        // Support path as a function
+        var parsedPath = parsePath(file.path);
+        var result = name(parsedPath) || parsedPath;
+        fileName = typeof result === &#x27;string&#x27; ? result : result.basename + result.extname;
+      } else {
+        throw new PluginError(&#x27;gulp-concat-util&#x27;, &#x27;Missing path&#x27;);
+      }
+      // Initialize concat
+      concat = new Concat(!!file.sourceMap, fileName, options.sep);
+    }
+
+    var contents = file.contents;
+    // Support process as a function
+    if(typeof options.process === &#x27;function&#x27;) {
+      contents = new Buffer(options.process.call(file, contents.toString(), file.path));
+    // Support process as an object fed to gutil.template
+    } else if(typeof options.process === &#x27;object&#x27;)  {
+      contents = new Buffer(gutil.template(contents, extend({file: file}, options.process)));
+    }
+
+    concat.add(file.relative, contents.toString(), file.sourceMap);
+    if(options.passthrough) {
+      /* jshint validthis:true */
+      this.push(file);
+    }
+
+    next();
+  }
+
+  function flushFn(next) {
+    if (firstFile) {
+
+      var joinedFile = firstFile.clone({contents: false});
+
+      joinedFile.path = path.join(options.cwd || firstFile.base, fileName);
+      joinedFile.base = options.base || firstFile.base;
+      joinedFile.contents = new Buffer(concat.content);
+      joinedFile.__concat = true;
+
+      if (concat.sourceMapping) {
+        joinedFile.sourceMap = JSON.parse(concat.sourceMap);
+      }
+
+      /* jshint validthis:true */
+      this.unshift(joinedFile);
+    }
+    next();
+  }
+
+  return through.obj(combineFn, flushFn);
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-concat-util.footer" id="apidoc.element.gulp-concat-util.footer">
+        function <span class="apidocSignatureSpan">gulp-concat-util.</span>footer
+        <span class="apidocSignatureSpan">(footer, locals)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">footer = function (footer, locals) {
+  return through.obj(function(file, encoding, next) {
+    file.contents = Buffer.concat([file.contents, new Buffer(gutil.template(footer, extend({file: file}, locals)))]);
+    next(null, file);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+# gulp-concat-util [![Build Status](https://secure.travis-ci.org/mgcrea/gulp-concat-util.png?branch=master)](http://travis-ci.org
+/#!/mgcrea/gulp-concat-util)
+
+&#x3e; Gulp task to concat, prepend, append or transform files.
+
+This implementation is relatively closes to the original [gulp-concat](https://github.com/wearefractal/gulp-concat) plugin.
+
+However this plugin provides `.header()`, `.<span class="apidocCodeKeywordSpan">footer</span>()` &#x26; `.scripts()` helpers, and
+ provides a passthrough option used in complex build worflow.
+
+## Getting Started
+
+This plugin requires Gulp `^3.0.0`
+
+If you haven&#x27;t used [Gulp](http://gulpjs.com/) before, be sure to check out the [Getting Started](https://github.com/gulpjs
+/gulp/blob/master/docs/getting-started.md) guide, as it explains how to create a [Gulpfile](https://github.com/gulpjs/gulp/blob/
+master/docs/API.md) as well as install and use Gulp plugins. Once you&#x27;re familiar with that , you may install this plugin with
+ this command:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-concat-util.header" id="apidoc.element.gulp-concat-util.header">
+        function <span class="apidocSignatureSpan">gulp-concat-util.</span>header
+        <span class="apidocSignatureSpan">(header, locals)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">header = function (header, locals) {
+  return through.obj(function(file, encoding, next) {
+    file.contents = Buffer.concat([new Buffer(gutil.template(header, extend({file: file}, locals))), file.contents]);
+    next(null, file);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+# gulp-concat-util [![Build Status](https://secure.travis-ci.org/mgcrea/gulp-concat-util.png?branch=master)](http://travis-ci.org
+/#!/mgcrea/gulp-concat-util)
+
+&#x3e; Gulp task to concat, prepend, append or transform files.
+
+This implementation is relatively closes to the original [gulp-concat](https://github.com/wearefractal/gulp-concat) plugin.
+
+However this plugin provides `.<span class="apidocCodeKeywordSpan">header</span>()`, `.footer()` &#x26; `.scripts()` helpers, and
+ provides a passthrough option used in complex build worflow.
+
+## Getting Started
+
+This plugin requires Gulp `^3.0.0`
+
+If you haven&#x27;t used [Gulp](http://gulpjs.com/) before, be sure to check out the [Getting Started](https://github.com/gulpjs
+/gulp/blob/master/docs/getting-started.md) guide, as it explains how to create a [Gulpfile](https://github.com/gulpjs/gulp/blob/
+master/docs/API.md) as well as install and use Gulp plugins. Once you&#x27;re familiar with that , you may install this plugin with
+ this command:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-concat-util.scripts" id="apidoc.element.gulp-concat-util.scripts">
+        function <span class="apidocSignatureSpan">gulp-concat-util.</span>scripts
+        <span class="apidocSignatureSpan">(name, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">scripts = function (name, options) {
+  if(!options) options = {};
+  options.process = processJsSource;
+  return combine.obj(
+    concat(name, options),
+    gulpif(function(file) { return file.__concat; }, concat.header([&#x27;(function(window, document, undefined) {&#x27;, os.EOL, &#x27;\&#x27;use strict\&#x27;;&#x27;, os.EOL].join(&#x27;&#x27;))),
+    gulpif(function(file) { return file.__concat; }, concat.footer([os.EOL, os.EOL, &#x27;})(window, document);&#x27;, os.EOL].join(&#x27;&#x27;)))
+  );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+# gulp-concat-util [![Build Status](https://secure.travis-ci.org/mgcrea/gulp-concat-util.png?branch=master)](http://travis-ci.org
+/#!/mgcrea/gulp-concat-util)
+
+&#x3e; Gulp task to concat, prepend, append or transform files.
+
+This implementation is relatively closes to the original [gulp-concat](https://github.com/wearefractal/gulp-concat) plugin.
+
+However this plugin provides `.header()`, `.footer()` &#x26; `.<span class="apidocCodeKeywordSpan">scripts</span>()` helpers, and
+ provides a passthrough option used in complex build worflow.
+
+## Getting Started
+
+This plugin requires Gulp `^3.0.0`
+
+If you haven&#x27;t used [Gulp](http://gulpjs.com/) before, be sure to check out the [Getting Started](https://github.com/gulpjs
+/gulp/blob/master/docs/getting-started.md) guide, as it explains how to create a [Gulpfile](https://github.com/gulpjs/gulp/blob/
+master/docs/API.md) as well as install and use Gulp plugins. Once you&#x27;re familiar with that , you may install this plugin with
+ this command:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-concat-util.toString" id="apidoc.element.gulp-concat-util.toString">
+        function <span class="apidocSignatureSpan">gulp-concat-util.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toString = function () {
+    return text;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-concat-util.footer" id="apidoc.module.gulp-concat-util.footer">module gulp-concat-util.footer</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-concat-util.footer.footer" id="apidoc.element.gulp-concat-util.footer.footer">
+        function <span class="apidocSignatureSpan">gulp-concat-util.</span>footer
+        <span class="apidocSignatureSpan">(footer, locals)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">footer = function (footer, locals) {
+  return through.obj(function(file, encoding, next) {
+    file.contents = Buffer.concat([file.contents, new Buffer(gutil.template(footer, extend({file: file}, locals)))]);
+    next(null, file);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+# gulp-concat-util [![Build Status](https://secure.travis-ci.org/mgcrea/gulp-concat-util.png?branch=master)](http://travis-ci.org
+/#!/mgcrea/gulp-concat-util)
+
+&#x3e; Gulp task to concat, prepend, append or transform files.
+
+This implementation is relatively closes to the original [gulp-concat](https://github.com/wearefractal/gulp-concat) plugin.
+
+However this plugin provides `.header()`, `.<span class="apidocCodeKeywordSpan">footer</span>()` &#x26; `.scripts()` helpers, and
+ provides a passthrough option used in complex build worflow.
+
+## Getting Started
+
+This plugin requires Gulp `^3.0.0`
+
+If you haven&#x27;t used [Gulp](http://gulpjs.com/) before, be sure to check out the [Getting Started](https://github.com/gulpjs
+/gulp/blob/master/docs/getting-started.md) guide, as it explains how to create a [Gulpfile](https://github.com/gulpjs/gulp/blob/
+master/docs/API.md) as well as install and use Gulp plugins. Once you&#x27;re familiar with that , you may install this plugin with
+ this command:
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-concat-util.header" id="apidoc.module.gulp-concat-util.header">module gulp-concat-util.header</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-concat-util.header.header" id="apidoc.element.gulp-concat-util.header.header">
+        function <span class="apidocSignatureSpan">gulp-concat-util.</span>header
+        <span class="apidocSignatureSpan">(header, locals)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">header = function (header, locals) {
+  return through.obj(function(file, encoding, next) {
+    file.contents = Buffer.concat([new Buffer(gutil.template(header, extend({file: file}, locals))), file.contents]);
+    next(null, file);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+# gulp-concat-util [![Build Status](https://secure.travis-ci.org/mgcrea/gulp-concat-util.png?branch=master)](http://travis-ci.org
+/#!/mgcrea/gulp-concat-util)
+
+&#x3e; Gulp task to concat, prepend, append or transform files.
+
+This implementation is relatively closes to the original [gulp-concat](https://github.com/wearefractal/gulp-concat) plugin.
+
+However this plugin provides `.<span class="apidocCodeKeywordSpan">header</span>()`, `.footer()` &#x26; `.scripts()` helpers, and
+ provides a passthrough option used in complex build worflow.
+
+## Getting Started
+
+This plugin requires Gulp `^3.0.0`
+
+If you haven&#x27;t used [Gulp](http://gulpjs.com/) before, be sure to check out the [Getting Started](https://github.com/gulpjs
+/gulp/blob/master/docs/getting-started.md) guide, as it explains how to create a [Gulpfile](https://github.com/gulpjs/gulp/blob/
+master/docs/API.md) as well as install and use Gulp plugins. Once you&#x27;re familiar with that , you may install this plugin with
+ this command:
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-concat-util.scripts" id="apidoc.module.gulp-concat-util.scripts">module gulp-concat-util.scripts</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-concat-util.scripts.scripts" id="apidoc.element.gulp-concat-util.scripts.scripts">
+        function <span class="apidocSignatureSpan">gulp-concat-util.</span>scripts
+        <span class="apidocSignatureSpan">(name, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">scripts = function (name, options) {
+  if(!options) options = {};
+  options.process = processJsSource;
+  return combine.obj(
+    concat(name, options),
+    gulpif(function(file) { return file.__concat; }, concat.header([&#x27;(function(window, document, undefined) {&#x27;, os.EOL, &#x27;\&#x27;use strict\&#x27;;&#x27;, os.EOL].join(&#x27;&#x27;))),
+    gulpif(function(file) { return file.__concat; }, concat.footer([os.EOL, os.EOL, &#x27;})(window, document);&#x27;, os.EOL].join(&#x27;&#x27;)))
+  );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+# gulp-concat-util [![Build Status](https://secure.travis-ci.org/mgcrea/gulp-concat-util.png?branch=master)](http://travis-ci.org
+/#!/mgcrea/gulp-concat-util)
+
+&#x3e; Gulp task to concat, prepend, append or transform files.
+
+This implementation is relatively closes to the original [gulp-concat](https://github.com/wearefractal/gulp-concat) plugin.
+
+However this plugin provides `.header()`, `.footer()` &#x26; `.<span class="apidocCodeKeywordSpan">scripts</span>()` helpers, and
+ provides a passthrough option used in complex build worflow.
+
+## Getting Started
+
+This plugin requires Gulp `^3.0.0`
+
+If you haven&#x27;t used [Gulp](http://gulpjs.com/) before, be sure to check out the [Getting Started](https://github.com/gulpjs
+/gulp/blob/master/docs/getting-started.md) guide, as it explains how to create a [Gulpfile](https://github.com/gulpjs/gulp/blob/
+master/docs/API.md) as well as install and use Gulp plugins. Once you&#x27;re familiar with that , you may install this plugin with
+ this command:
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-concat-util.toString" id="apidoc.module.gulp-concat-util.toString">module gulp-concat-util.toString</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-concat-util.toString.toString" id="apidoc.element.gulp-concat-util.toString.toString">
+        function <span class="apidocSignatureSpan">gulp-concat-util.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function toString() { [native code] }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
